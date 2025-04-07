@@ -50,14 +50,14 @@ def role_required(required_role):
         return login_required(_wrapped_view)
     return decorator
 
-@role_required('Admin')
+@user_passes_test(role_required('Admin'))
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
-@role_required('Librarian')
+@user_passes_test(role_required('Librarian'))
 def librarian_view(request):
     return render(request, 'relationship_app/librarian_view.html')
 
-@role_required('Member')
+@user_passes_test(role_required('Member'))
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
