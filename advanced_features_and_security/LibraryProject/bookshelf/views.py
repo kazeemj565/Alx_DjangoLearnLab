@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 # Function-based view to list all books.
 def list_books(request):
     books = Book.objects.all()
-    return render(request, 'bookshelf/list_books.html', {'books': books})
+    return render(request, 'bookshelf/book_list.html', {'books': books})
 
 # Class-based view for library details.
 class LibraryDetailView(DetailView):
@@ -35,7 +35,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Automatically log in the new user.
-            return redirect('list_books')  # Redirect to a view of your choice.
+            return redirect('book_list')  # Redirect to a view of your choice.
     else:
         form = UserCreationForm()
     return render(request, 'bookshelf/register.html', {'form': form})
