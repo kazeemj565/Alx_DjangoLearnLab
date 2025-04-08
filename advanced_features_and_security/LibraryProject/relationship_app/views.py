@@ -94,3 +94,27 @@ def delete_book(request, book_id):
         book.delete()
         return redirect('book_list')
     return render(request, 'relationship_app/delete_book.html', {'book': book})
+
+
+@permission_required('relationship_app.can_view_book')
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'relationship_app/book_list.html', {'books': books})
+
+
+
+# relationship_app/urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('admin-view/', views.admin_view, name='admin_view'),
+    path('librarian-view/', views.librarian_view, name='librarian_view'),
+    path('member-view/', views.member_view, name='member_view'),
+
+    path('books/', views.book_list, name='book_list'),
+    path('books/add/', views.add_book, name='add_book'),
+    path('books/<int:book_id>/edit/', views.edit_book, name='edit_book'),
+    path('books/<int:book_id>/delete/', views.delete_book, name='delete_book'),
+]

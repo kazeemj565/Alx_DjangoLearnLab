@@ -69,3 +69,19 @@ mv Introduction_to_Django/Alx_DjangoLearnLab .
 
 ---
 
+## Roles and Permissions Setup
+
+### Permissions (defined in Book model):
+- can_add_book
+- can_change_book
+- can_delete_book
+- can_view_book
+
+### Groups:
+- **Admins**: All permissions
+- **Librarians**: Add, edit, delete, view books
+- **Members**: View books only
+
+### Views:
+- Protected using `@permission_required()`
+- Role views use `@user_passes_test(role_required(...))`
