@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 
 from django.contrib.auth.decorators import permission_required, user_passes_test, login_required
 from .models import UserProfile
-from .forms import BookForm, ExampleForm  # Assume you have a form
+from .forms import ExampleForm, BookForm  # Assume you have a form
 
 
 logger = logging.getLogger(__name__)
