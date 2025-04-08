@@ -24,6 +24,7 @@ class Book(models.Model):
             ("can_change_book", "Can change book"),
             ("can_delete_book", "Can delete book"),
             ("can_view_book", "Can view book"),
+            ("can_create", "Can create book"),
         ]
 
     def __str__(self):
