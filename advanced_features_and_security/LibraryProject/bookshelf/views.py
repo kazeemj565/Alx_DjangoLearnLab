@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 
 from django.contrib.auth.decorators import permission_required, user_passes_test, login_required
 from .models import UserProfile
-from .forms import BookForm  # Assume you have a form
+from .forms import BookForm, ExampleForm  # Assume you have a form
 
 
 logger = logging.getLogger(__name__)
@@ -111,4 +111,9 @@ def search_books(request):
     return render(request, 'bookshelf/book_list.html', {'books': books})
 
 
-
+def example_form_view(request):
+    form = ExampleForm(request.POST or None)
+    if form.is_valid():
+        # process form.cleaned_data here
+        pass
+    return render(request, 'bookshelf/form_example.html', {'form': form})
