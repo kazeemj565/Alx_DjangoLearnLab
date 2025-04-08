@@ -160,3 +160,26 @@ CSP_DEFAULT_SRC = ("'self'",)
 CSP_SCRIPT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
 CSP_IMG_SRC = ("'self'",)
+
+
+# Enforce HTTPS
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Secure cookies
+SESSION_COOKIE_SECURE = True  # Only send session cookies via HTTPS
+CSRF_COOKIE_SECURE = True     # Only send CSRF cookies via HTTPS
+
+# Secure headers
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent content type sniffing
+SECURE_BROWSER_XSS_FILTER = True  # Enable XSS filter in browsers
+
+# Additional useful settings
+# Only allow your actual domain(s)
+ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']  # Change this for production
+DEBUG = False  # Ensure debug is off in production!
