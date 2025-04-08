@@ -183,3 +183,6 @@ SECURE_BROWSER_XSS_FILTER = True  # Enable XSS filter in browsers
 # Only allow your actual domain(s)
 ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']  # Change this for production
 DEBUG = False  # Ensure debug is off in production!
+
+# If using a reverse proxy like Nginx, ensure HTTPS is properly detected
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
