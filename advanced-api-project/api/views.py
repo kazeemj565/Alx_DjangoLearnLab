@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django_filters import rest_framework
 # Create your views here.
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 
 from .models import Book
 from .serializers import BookSerializer
-from rest_framework.filters import SearchFilter, OrderingFilter
-from django_filters.rest_framework import DjangoFilterBackend
+# from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import  DjangoFilterBackend
 
 
 
@@ -25,6 +25,21 @@ class BookListView(generics.ListAPIView):
     # permission_classes = [permissions.AllowAny]
     permission_classes = [AllowAny]
 
+     # Enable filtering, searching, and ordering
+    # filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+
+    # Filtering
+    filterset_fields = ['title', 'author', 'publication_year']
+    
+    # Searching (partial matches)
+    search_fields = ['title', 'author__name']
+    
+    # Ordering
+    ordering_fields = ['title', 'publication_year']
+    ordering = ['title']  # default ordering
+
+
 
 #  Retrieve one book by ID
 class BookDetailView(generics.RetrieveAPIView):
@@ -40,19 +55,7 @@ class BookDetailView(generics.RetrieveAPIView):
     permission_classes = [AllowAny]
     # permission_classes = [permissions.AllowAny]
 
-    # Enable filtering, searching, and ordering
-    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    
-    # Filtering
-    filterset_fields = ['title', 'author', 'publication_year']
-    
-    # Searching (partial matches)
-    search_fields = ['title', 'author__name']
-    
-    # Ordering
-    ordering_fields = ['title', 'publication_year']
-    ordering = ['title']  # default ordering
-
+   
 
 
 # Create a new book
@@ -101,3 +104,6 @@ class BookDeleteView(generics.DestroyAPIView):
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]
     # permission_classes = [permissions.IsAuthenticated]
+
+
+
