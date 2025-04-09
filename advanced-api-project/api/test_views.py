@@ -88,3 +88,11 @@ class BookAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         titles = [book['title'] for book in response.data]
         self.assertEqual(titles, sorted(titles))
+
+
+    def test_delete_book_authenticated(self):
+            self.client.login(username='testuser', password='password123')  # login before deleting
+
+            url = reverse('book-delete', kwargs={'pk': self.book.pk})
+            response = self.client.delete(url)
+            self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
