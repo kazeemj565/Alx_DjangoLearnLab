@@ -24,3 +24,17 @@ Search by partial matches in title or author name:
 
 ### ↕️ Ordering
 Order results by title or publication year (ascending/descending):
+
+
+## 🔬 Unit Testing API Endpoints
+
+All tests are located in `api/test_views.py`. The tests cover:
+- CRUD operations for the Book model
+- Authenticated vs unauthenticated access
+- Filtering by title
+- Searching by author name
+- Ordering by title
+
+### 🧪 Run Tests:
+```bash
+python manage.py test api
