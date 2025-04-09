@@ -10,3 +10,17 @@
 
 Permissions:
 - Create/Update/Delete views require the user to be authenticated.
+
+
+## 🔍 Book API Query Features
+
+### 📑 Filtering
+You can filter by title, author ID, or publication year:
+
+
+### 🔎 Searching
+Search by partial matches in title or author name:
+
+
+### ↕️ Ordering
+Order results by title or publication year (ascending/descending):

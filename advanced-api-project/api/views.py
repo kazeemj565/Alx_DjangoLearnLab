@@ -6,6 +6,10 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 
 from .models import Book
 from .serializers import BookSerializer
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+
+
 
 #  List all books
 class BookListView(generics.ListAPIView):
@@ -35,6 +39,20 @@ class BookDetailView(generics.RetrieveAPIView):
     serializer_class = BookSerializer
     permission_classes = [AllowAny]
     # permission_classes = [permissions.AllowAny]
+
+    # Enable filtering, searching, and ordering
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    
+    # Filtering
+    filterset_fields = ['title', 'author', 'publication_year']
+    
+    # Searching (partial matches)
+    search_fields = ['title', 'author__name']
+    
+    # Ordering
+    ordering_fields = ['title', 'publication_year']
+    ordering = ['title']  # default ordering
+
 
 
 # Create a new book
