@@ -18,3 +18,22 @@
 ## Forms
 - `CustomUserCreationForm`: Adds email to registration
 - CSRF protection enabled
+
+# Blog Post Management Features
+
+## Functionality
+- List all posts at `/`
+- View individual post details at `/posts/<id>/`
+- Create a new post at `/posts/new/` (authenticated users only)
+- Edit and delete posts (author only)
+
+## Permissions
+- Guests can only read posts.
+- Logged-in users can create posts.
+- Only post authors can edit/delete their own posts.
+
+## How to Test
+1. Visit `/register` to sign up.
+2. Create a new post.
+3. Edit and delete your post.
+4. Try accessing edit/delete on another user’s post — you should be denied.
