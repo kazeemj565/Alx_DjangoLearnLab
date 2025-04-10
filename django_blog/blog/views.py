@@ -157,3 +157,16 @@ class PostsByTagView(ListView):
 
     def get_queryset(self):
         return Post.objects.filter(tags__name__iexact=self.kwargs['tag_name'])
+
+
+@login_required
+def edit_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('post-detail', pk=comment.post.id)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'blog/comment_form.html', {'form': form})
