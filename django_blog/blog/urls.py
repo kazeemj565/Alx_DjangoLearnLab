@@ -18,10 +18,10 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('posts/<int:post_id>/comments/new/', views.add_comment, name='comment-add'),
-    path('comments/<int:pk>/edit/', views.edit_comment, name='comment-edit'),
+    path('comment/<int:pk>/update/', views.edit_comment, name='comment-edit'),
     path('comments/<int:pk>/delete/', views.delete_comment, name='comment-delete'),
     path('post/<int:pk>/comments/new/', CommentCreateView.as_view(), name='comment-create'),
-    path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='comment-update'),
+    path('comment/<int:pk>/update/', CommentUpdateView.as_view(), name='comment-update'),
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 
     ]
